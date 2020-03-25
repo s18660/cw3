@@ -26,6 +26,12 @@ namespace cw3
             return Ok(_dbService.GetStudents());
         }
 
+        [HttpGet("getStudentEnrollment/{id}")]
+        public IActionResult getStudentEnrollment(string id)
+        {
+            return Ok(_dbService.GetStudentEnrollment(id));
+        }
+
         [HttpGet("getStudents")]
         public string GetStudents()
         {
