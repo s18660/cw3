@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using cw3.DAL;
+using cw3.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace cw3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDbService, MockDbService>();
+            services.AddScoped<IStudentsDbService, SqlServerDbService>();
             services.AddControllers();
         }
 

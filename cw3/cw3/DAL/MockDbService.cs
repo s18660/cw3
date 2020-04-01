@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System;
 
 namespace cw3.DAL
 {
@@ -28,7 +29,7 @@ namespace cw3.DAL
                 while(dr.Read())
                 {
                     var stud = new Student();
-                    stud.FistName = dr["FirstName"].ToString();
+                    stud.FirstName = dr["FirstName"].ToString();
                     stud.LastName = dr["LastName"].ToString();
                     stud.IndexNumber = dr["IndexNumber"].ToString();
 
@@ -57,7 +58,7 @@ namespace cw3.DAL
                     var enrol = new Enrollment();
                     enrol.Semester = int.Parse(dr["Semester"].ToString());
                     enrol.IdStudy = int.Parse(dr["IdStudy"].ToString());
-                    enrol.StartDate = dr["StartDate"].ToString();
+                    enrol.StartDate = DateTime.Parse(dr["StartDate"].ToString());
 
                     enrollments.Add(enrol);
                 }
