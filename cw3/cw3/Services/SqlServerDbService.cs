@@ -30,7 +30,7 @@ namespace cw3.Services
                     var dr = command.ExecuteReader();
                     if (!dr.Read())
                     {
-                        return null;
+                        throw new Exception("Brak podanych studiów");
                     }
                     int idStudy = (int)dr["IdStudy"];
                     dr.Close();
@@ -68,7 +68,7 @@ namespace cw3.Services
                 catch (SqlException e)
                 {
                     tran.Rollback();
-                    return null;
+                    throw new Exception(e.Message);
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace cw3.Services
                     dr.Close();
                     if (count < 1)
                     {
-                        return null;
+                        throw new Exception("Brak podanych studiów");
                     }
 
                     command.CommandText = "exec promoteStudents @name, @semester";
@@ -109,7 +109,7 @@ namespace cw3.Services
                 }
                 catch (SqlException e)
                 {
-                    return null;
+                    throw new Exception(e.Message);
                 }
             }
         }

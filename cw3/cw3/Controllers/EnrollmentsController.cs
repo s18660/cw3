@@ -22,10 +22,13 @@ namespace cw3.Controllers
         [HttpPost("addStudent")]
         public IActionResult addStudent(Student student)
         {
-            var response = _dbService.addStudent(student);
-            if(response == null)
+            Enrollment response;
+            try
             {
-                return BadRequest();
+                response = _dbService.addStudent(student);
+            }catch(Exception e)
+            {
+                return BadRequest(e.Message);
             }
             return Created("Created", response);
         }
@@ -33,12 +36,15 @@ namespace cw3.Controllers
         [HttpPost("promotions")]
         public IActionResult promotions(Promotion promotion)
         {
-            var response = _dbService.promotions(promotion);
-            if(response == null)
+            Enrollment response;
+            try
             {
-                return NotFound();
+                response = _dbService.promotions(promotion);
+            }catch(Exception e)
+            {
+                return NotFound(e.Message);
             }
-            return Created("", response);
+            return Created("Created", response);
         }
     }
 }
