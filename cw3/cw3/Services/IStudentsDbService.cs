@@ -8,7 +8,8 @@ namespace cw3.Services
 {
     public interface IStudentsDbService
     {
-        public Enrollment addStudent(Student student);
-        public Enrollment promotions(Promotion promotion);
+        public Enrollment AddStudent(Student student);
+        public Enrollment Promotions(Promotion promotion);
+        public bool CheckIndex(string index);
     }
 }

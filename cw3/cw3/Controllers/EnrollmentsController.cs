@@ -25,7 +25,7 @@ namespace cw3.Controllers
             Enrollment response;
             try
             {
-                response = _dbService.addStudent(student);
+                response = _dbService.AddStudent(student);
             }catch(Exception e)
             {
                 return BadRequest(e.Message);
@@ -39,7 +39,7 @@ namespace cw3.Controllers
             Enrollment response;
             try
             {
-                response = _dbService.promotions(promotion);
+                response = _dbService.Promotions(promotion);
             }catch(Exception e)
             {
                 return NotFound(e.Message);

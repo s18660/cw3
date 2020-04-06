@@ -1,0 +1,48 @@
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudents
+Body: 
+{
+	"test": "test"
+}
+queryString: ?test=test
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+{
+	"test": "test"
+}
+queryString: 
+
+Method: POST
+Path: /api/students/
+Body: 
+{
+	"test": "test"
+}
+queryString: 
+
+Method: POST
+Path: /api/students/
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudents
+Body: 
+
+queryString: ?test=tescior
+

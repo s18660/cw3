@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace cw3.Services
     {
         private readonly string connectionString = "Data Source=db-mssql;Initial Catalog=s18660;Integrated Security=True;MultipleActiveResultsets=true";
 
-        public Enrollment addStudent(Student student)
+        public Enrollment AddStudent(Student student)
         {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand())
@@ -63,17 +64,36 @@ namespace cw3.Services
                     command.ExecuteNonQuery();
 
                     tran.Commit();
+                    tran.Dispose();
                     return new Enrollment() {IdStudy = idStudy, Semester = 1, StartDate = DateTime.Today };
                 }
                 catch (SqlException e)
                 {
                     tran.Rollback();
+                    tran.Dispose();
                     throw new Exception(e.Message);
                 }
             }
         }
 
-        public Enrollment promotions(Promotion promotion)
+        public bool CheckIndex(string index)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select count(1) from Student where IndexNumber = @index";
+                command.Parameters.AddWithValue("index", index);
+                var dr = command.ExecuteReader();
+                dr.Read();
+                int count = (int)dr.GetValue(0);
+                dr.Close();
+                return count > 0 ? true : false;
+            }
+        }
+
+        public Enrollment Promotions(Promotion promotion)
         {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand())
