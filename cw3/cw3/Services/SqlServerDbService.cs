@@ -1,4 +1,5 @@
 ﻿using cw3.Data;
+using cw3.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -73,6 +74,24 @@ namespace cw3.Services
                     tran.Dispose();
                     throw new Exception(e.Message);
                 }
+            }
+        }
+
+        public bool CheckCredentials(LoginRequestDto request)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select count(1) from Student where IndexNumber = @index and Password = @password";
+                command.Parameters.AddWithValue("index", request.Login);
+                command.Parameters.AddWithValue("password", request.Password);
+                var dr = command.ExecuteReader();
+                dr.Read();
+                int count = (int)dr.GetValue(0);
+                dr.Close();
+                return count > 0 ? true : false;
             }
         }
 

@@ -46,3 +46,334 @@ Body:
 
 queryString: ?test=tescior
 
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+{
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+{
+	"test": "test"
+}
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+{
+	"test": "test"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+{
+}
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+{
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+
+Method: POST
+Path: /api/enrollments/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: POST
+Path: /api/enrollments/addStudent
+Body: 
+{
+"IndexNumber": "s1234", 
+"FirstName": "Andrzej", 
+"LastName": "Malewski",
+"BirthDate": "1993-03-30",
+"Studies": "Sztuka Nowych Mediów dzienne"
+}
+queryString: 
+

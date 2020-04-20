@@ -1,22 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using cw3.DAL;
+using cw3.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace cw3.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
         private readonly IDbService _dbService;
+        private readonly IConfiguration Configuration;
 
-        public StudentsController(IDbService dbService)
+        public StudentsController(IConfiguration configuration, IDbService dbService)
         {
+            Configuration = configuration;
             _dbService = dbService;
         }
 
@@ -30,6 +38,40 @@ namespace cw3.Controllers
         public IActionResult getStudentEnrollment(string id)
         {
             return Ok(_dbService.GetStudentEnrollment(id));
+        }
+
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public IActionResult Login(LoginRequestDto request)
+        {
+            if(!_dbService.CheckCredentials(request))
+            {
+                return Unauthorized();
+            }
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, request.Login),
+                new Claim(ClaimTypes.Role, "student")
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken
+                (
+                    issuer: "s18660",
+                    audience: "Students",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(5),
+                    signingCredentials: creds
+                );
+
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                refreshToken = Guid.NewGuid()
+            });
         }
 
         [HttpGet("getStudents")]

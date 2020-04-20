@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
+using cw3.DTOs;
 
 namespace cw3.DAL
 {
@@ -17,7 +18,7 @@ namespace cw3.DAL
 
         public IEnumerable<Student> GetStudents()
         {
-            using(var conn = ConnectToDataBase())
+            using(var conn = new SqlConnection(connectionString))
             using(var command = new SqlCommand())
             {
                 _students.Clear();
@@ -42,7 +43,7 @@ namespace cw3.DAL
 
         public IEnumerable<Enrollment> GetStudentEnrollment(string id)
         {
-            using (var conn = ConnectToDataBase())
+            using (var conn = new SqlConnection(connectionString))
             using (var command = new SqlCommand())
             {
                 command.Connection = conn;
@@ -66,9 +67,22 @@ namespace cw3.DAL
             }
         }
 
-        private SqlConnection ConnectToDataBase() 
+        public bool CheckCredentials(LoginRequestDto request)
         {
-            return new SqlConnection(connectionString);
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select count(1) from Student where IndexNumber = @index and Password = @password";
+                command.Parameters.AddWithValue("index", request.Login);
+                command.Parameters.AddWithValue("password", request.Password);
+                var dr = command.ExecuteReader();
+                dr.Read();
+                int count = (int)dr.GetValue(0);
+                dr.Close();
+                return count > 0 ? true : false;
+            }
         }
     }
 }

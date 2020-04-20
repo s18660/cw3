@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cw3.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,5 +10,6 @@ namespace cw3.DAL
     {
         public IEnumerable<Student> GetStudents();
         public IEnumerable<Enrollment> GetStudentEnrollment(string id);
+        bool CheckCredentials(LoginRequestDto request);
     }
 }

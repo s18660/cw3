@@ -18,6 +18,7 @@ namespace cw3.Middlewares
         }
         public async Task InvokeAsync(HttpContext httpContext)
         {
+            httpContext.Request.EnableBuffering();
             var httpMethod = "Method: " + httpContext.Request.Method;
             var httpPath = "Path: " + httpContext.Request.Path;
             var bodyStream = "Body: \n";
