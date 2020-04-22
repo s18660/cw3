@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +63,7 @@ namespace cw3.Controllers
             return Ok(GenerateToken(login));
         }
 
-        private Object GenerateToken(string login)
+        private object GenerateToken(string login)
         {
             var claims = new[]
             {

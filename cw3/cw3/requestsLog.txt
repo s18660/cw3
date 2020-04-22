@@ -491,3 +491,114 @@ Body:
 
 queryString: 
 
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/register
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: POST
+Path: /api/students/register
+Body: 
+{
+	"login": "s19017",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: POST
+Path: /api/students/register
+Body: 
+{
+	"login": "s19302",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s19017",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s19302",
+	"password": "qwerty123"
+}
+queryString: 
+

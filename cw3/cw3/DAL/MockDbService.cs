@@ -2,6 +2,9 @@
 using System.Data.SqlClient;
 using System;
 using cw3.DTOs;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace cw3.DAL
 {
@@ -74,10 +77,19 @@ namespace cw3.DAL
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select count(1) from Student where IndexNumber = @index and Password = @password";
+                command.CommandText = "select Salt from Student where IndexNumber = @index";
                 command.Parameters.AddWithValue("index", request.Login);
-                command.Parameters.AddWithValue("password", request.Password);
                 var dr = command.ExecuteReader();
+                dr.Read();
+                var salt = dr["Salt"].ToString();
+                dr.Close();
+
+                var hash = CreateHash(request.Password, salt);
+
+                command.Connection = connection;
+                command.CommandText = "select count(1) from Student where IndexNumber = @index and Password = @password";
+                command.Parameters.AddWithValue("password", hash);
+                dr = command.ExecuteReader();
                 dr.Read();
                 int count = (int)dr.GetValue(0);
                 dr.Close();
@@ -113,6 +125,28 @@ namespace cw3.DAL
                 command.Parameters.AddWithValue("refreshToken", refreshToken);
                 command.Parameters.AddWithValue("login", login);
                 var dr = command.ExecuteNonQuery();
+            }
+        }
+
+        private string CreateHash(string password, string salt)
+        {
+            var valueBytes = KeyDerivation.Pbkdf2(
+                                    password: password,
+                                    salt: Encoding.UTF8.GetBytes(salt),
+                                    prf: KeyDerivationPrf.HMACSHA512,
+                                    iterationCount: 10000,
+                                    numBytesRequested: 256 / 8);
+
+            return Convert.ToBase64String(valueBytes);
+        }
+
+        private string CreateSalt()
+        {
+            byte[] randomBytes = new byte[128 / 8];
+            using (var generator = RandomNumberGenerator.Create())
+            {
+                generator.GetBytes(randomBytes);
+                return Convert.ToBase64String(randomBytes);
             }
         }
     }
