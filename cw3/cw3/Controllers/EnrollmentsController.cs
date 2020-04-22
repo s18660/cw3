@@ -87,5 +87,48 @@ namespace cw3.Controllers
                 refreshToken = Guid.NewGuid()
             });
         }
+
+        [HttpPost("refreshToken/{refreshToken}")]
+        [AllowAnonymous]
+        public IActionResult RefreshToken(string refreshToken)
+        {
+            string login = _dbService.CheckRefreshToken(refreshToken);
+            if (login == "")
+            {
+                return Unauthorized();
+            }
+
+            return Ok(GenerateToken(login));
+        }
+
+        private object GenerateToken(string login)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, login),
+                new Claim(ClaimTypes.Role, "employee")
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken
+                (
+                    issuer: "s18660",
+                    audience: "Students",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(5),
+                    signingCredentials: creds
+                );
+
+            var newRefreshToken = Guid.NewGuid();
+            _dbService.AddRefreshToken(newRefreshToken, login);
+
+            return new
+            {
+                accessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                refreshToken = newRefreshToken
+            };
+        }
     }
 }

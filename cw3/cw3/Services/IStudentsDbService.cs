@@ -9,9 +9,13 @@ namespace cw3.Services
 {
     public interface IStudentsDbService
     {
+        public IEnumerable<Student> GetStudents();
+        public IEnumerable<Enrollment> GetStudentEnrollment(string id);
         public Enrollment AddStudent(Student student);
         public Enrollment Promotions(Promotion promotion);
         public bool CheckIndex(string index);
-        bool CheckCredentials(LoginRequestDto request);
+        public bool CheckCredentials(LoginRequestDto request);
+        public string CheckRefreshToken(string refreshToken);
+        public void AddRefreshToken(Guid refreshToken, string login);
     }
 }

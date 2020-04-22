@@ -3,8 +3,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using cw3.DAL;
 using cw3.DTOs;
+using cw3.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -17,10 +17,10 @@ namespace cw3.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
-        private readonly IDbService _dbService;
+        private readonly IStudentsDbService _dbService;
         private readonly IConfiguration Configuration;
 
-        public StudentsController(IConfiguration configuration, IDbService dbService)
+        public StudentsController(IConfiguration configuration, IStudentsDbService dbService)
         {
             Configuration = configuration;
             _dbService = dbService;
