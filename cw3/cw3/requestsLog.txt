@@ -377,3 +377,117 @@ Body:
 }
 queryString: 
 
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/refreshToken/3edfe66d-5e7f-4c5e-8efd-46d47c09f936
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/refreshToken/3edfe66d-5e7f-4c5e-8efd-46d47c09f936
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/login
+Body: 
+{
+	"login": "s18660",
+	"password": "qwerty123"
+}
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/refreshToken/c72dc811-f3be-442a-af56-9a0a5c373fe8
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /api/students/getStudentsFromDb
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /
+Body: 
+
+queryString: 
+
+Method: GET
+Path: /favicon.ico
+Body: 
+
+queryString: 
+
+Method: POST
+Path: /api/students/refreshToken/1374148e-c010-4d69-9cc3-b2e0c0ecc2d9
+Body: 
+
+queryString: 
+

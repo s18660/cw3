@@ -42,16 +42,34 @@ namespace cw3.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public IActionResult Login(LoginRequestDto request)
+        public IActionResult LoginStudent(LoginRequestDto request)
         {
             if(!_dbService.CheckCredentials(request))
             {
                 return Unauthorized();
             }
 
+            return Ok(GenerateToken(request.Login));
+        }
+
+        [HttpPost("refreshToken/{refreshToken}")]
+        [AllowAnonymous]
+        public IActionResult RefreshToken(string refreshToken)
+        {
+            string login = _dbService.CheckRefreshToken(refreshToken);
+            if (login == "")
+            {
+                return Unauthorized();
+            }
+
+            return Ok(GenerateToken(login));
+        }
+
+        private Object GenerateToken(string login)
+        {
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, request.Login),
+                new Claim(ClaimTypes.Name, login),
                 new Claim(ClaimTypes.Role, "student")
             };
 
@@ -67,11 +85,14 @@ namespace cw3.Controllers
                     signingCredentials: creds
                 );
 
-            return Ok(new
+            var newRefreshToken = Guid.NewGuid();
+            _dbService.AddRefreshToken(newRefreshToken, login);
+
+            return new
             {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                refreshToken = Guid.NewGuid()
-            });
+                accessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                refreshToken = newRefreshToken
+            };
         }
 
         [HttpGet("getStudents")]

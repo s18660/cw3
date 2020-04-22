@@ -84,5 +84,36 @@ namespace cw3.DAL
                 return count > 0 ? true : false;
             }
         }
+
+        public string CheckRefreshToken(string refreshToken)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select indexnumber from Student where RefreshToken = @refreshToken";
+                command.Parameters.AddWithValue("refreshToken", refreshToken);
+                var dr = command.ExecuteReader();
+                dr.Read();
+                string login = dr["IndexNumber"].ToString();
+                dr.Close();
+                return login;
+            }
+        }
+
+        public void AddRefreshToken(Guid refreshToken, string login)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "update student set RefreshToken = @refreshToken where IndexNumber = @login";
+                command.Parameters.AddWithValue("refreshToken", refreshToken);
+                command.Parameters.AddWithValue("login", login);
+                var dr = command.ExecuteNonQuery();
+            }
+        }
     }
 }

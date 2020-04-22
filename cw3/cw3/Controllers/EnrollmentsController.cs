@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using cw3.Data;
+﻿using cw3.Data;
 using cw3.DTOs;
 using cw3.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace cw3.Controllers
 {
@@ -59,7 +56,7 @@ namespace cw3.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public IActionResult Login(LoginRequestDto request)
+        public IActionResult LoginEmployee(LoginRequestDto request)
         {
             if (!_dbService.CheckCredentials(request))
             {

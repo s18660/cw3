@@ -10,6 +10,8 @@ namespace cw3.DAL
     {
         public IEnumerable<Student> GetStudents();
         public IEnumerable<Enrollment> GetStudentEnrollment(string id);
-        bool CheckCredentials(LoginRequestDto request);
+        public bool CheckCredentials(LoginRequestDto request);
+        public string CheckRefreshToken(string refreshToken);
+        public void AddRefreshToken(Guid refreshToken, string login);
     }
 }
